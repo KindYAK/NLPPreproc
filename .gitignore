@@ -1,0 +1,7 @@
+*.sqlite3
+.idea/
+Thumbs.db
+*.pyc
+venv/
+~*
+*.pickled
