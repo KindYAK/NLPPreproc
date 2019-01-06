@@ -9,20 +9,15 @@
 
 Список полей и структура хранения данных является прототипом - предложения и расширение имеющийся структуры необходимы и приветствуются.
 
-**Как запустить**
+**Как установить и запустить**
 
-`pip install pipenv`
+`pip install -r requirements.txt`
 
-`pipenv --pyhton 3.7`
-
-`pipenv shell`
-
-`pipenv install`
+`python -m textblob.download_corpora` (займёт какое время - скачивание корпуса NLTK)
 
 `python main.py fname=Sample.xlsx --sample_processor=args`
 
 После этого будет создан pickled файл `Sample_processed([('sample_processor', None)]).pickled`
-
 
 **Входные данные**
 

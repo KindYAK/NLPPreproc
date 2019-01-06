@@ -25,6 +25,7 @@ def read_xlsx(file_name):
     for rownum in range(0, xl_sheet.nrows):
         news.append({
             "title": xl_sheet.cell_value(rownum, 3),
+            "text": xl_sheet.cell_value(rownum, 4),
             "text_sentences": xl_sheet.cell_value(rownum, 4).split("."), #TODO smarter sentence separation?
             "text_tokens": [
                                 {
@@ -60,10 +61,6 @@ def main(argv):
     for processor in processor_classes:
         i = importlib.import_module(processor[0])
         news = i.process(news, processor[1])
-
-    for new in news:
-        for token in new['text_tokens']:
-            print(token['ner'])
 
     pickle.dump(news, open(file_name.split('.')[0] + "_processed(" + str(processor_classes) + ").pickled", "wb"))
 
