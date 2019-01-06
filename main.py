@@ -22,25 +22,26 @@ def read_xlsx(file_name):
     xl_workbook = xlrd.open_workbook(file_name)
     sheet_names = xl_workbook.sheet_names()
     xl_sheet = xl_workbook.sheet_by_name(sheet_names[0])
-    for rownum in range(0, xl_sheet.nrows):
+    for rownum in range(2, xl_sheet.nrows):
         news.append({
             "title": xl_sheet.cell_value(rownum, 3),
+            "title_tokens": [],  # Same as text_tokens
             "text": xl_sheet.cell_value(rownum, 4),
-            "text_sentences": xl_sheet.cell_value(rownum, 4).split("."), #TODO smarter sentence separation?
+            "text_sentences": [],  # TODO smarter sentence separation?
             "text_tokens": [
-                                {
-                                    "id": 0, #TODO ID (used for dependency parsing)
-                                    "token": token,
-                                    "normal_form": "",
-                                    "pos": "",
-                                    "ner": "",
-                                    "sentiment": "",
-                                    "dependency": [] #[(ID, TYPE)]
-                                    #...
-                                } for token in  xl_sheet.cell_value(rownum, 4).split(" ") #TODO smarter tokenization
+                                # {
+                                #     "id": 0, #TODO ID (used for dependency parsing)
+                                #     "token": token,
+                                #     "normal_form": "",
+                                #     "pos": "",
+                                #     "ner": "",
+                                #     "sentiment": "",
+                                #     "dependency": [] #[(ID, TYPE)]
+                                #     #...
+                                # } for token in  xl_sheet.cell_value(rownum, 4).split(" ") # TODO smarter tokenization
                             ],
-            "n_grams": [], #TODO ngrams
-            "authenticity": 0, #TODO
+            "n_grams": [],  # TODO ngrams
+            "authenticity": 0,  # TODO
             "objectivity": 0,
             "social_impact": 0,
             "potential_resonance": 0,
@@ -61,6 +62,8 @@ def main(argv):
     for processor in processor_classes:
         i = importlib.import_module(processor[0])
         news = i.process(news, processor[1])
+
+    print(news[0]['title_tokens'])
 
     pickle.dump(news, open(file_name.split('.')[0] + "_processed(" + str(processor_classes) + ").pickled", "wb"))
 
