@@ -5,3 +5,4 @@ Thumbs.db
 venv/
 ~*
 *.pickled
+models/

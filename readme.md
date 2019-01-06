@@ -49,9 +49,8 @@
 3) Токенизатор - **Done (Textblob/NLTK - --textblox_tokenize)**
 4) Лемматизатор
 5) NER
-6) POS
+6) POS - (Textblob/NLT - --textblob_POS - **не работает с русским!**)
 7) Sentiment
 8) Dependency Parsing
-9) Векторизация
 10) ???
 11) PROFIT
