@@ -61,7 +61,7 @@ def main(argv):
     file_name, processor_classes = parse_args(argv)
     news = read_xlsx(file_name)
     for processor in processor_classes:
-        i = importlib.import_module(processor[0])
+        i = importlib.import_module("processors." + processor[0])
         news = i.process(news, processor[1])
 
     pickle.dump(news, open(file_name.split('.')[0] + "_processed(" + str(processor_classes).replace("/", "-") + ").pickled", "wb"))
