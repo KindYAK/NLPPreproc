@@ -52,5 +52,9 @@
 6) POS - (Textblob/NLT - --textblob_POS - **не работает с русским!**)
 7) Sentiment
 8) Dependency Parsing
+9) Векторизация - 
+**--gensim_vectorize=path/to/.model**
+Использован araneum_none_fasttextcbow_300_5_2018 с https://rusvectores.org/ru/models/ (не включён в репозиторий)
+Можно использовать любую другую fasttext модель
 10) ???
 11) PROFIT

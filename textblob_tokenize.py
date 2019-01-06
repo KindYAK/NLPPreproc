@@ -2,7 +2,7 @@ from textblob import TextBlob
 
 
 def process(news, args):
-    for new in news[:1]:
+    for new in news:
         blob = TextBlob(new['text'])
         new['text_tokens'] = [{"token": str(token).lower()} for token in blob.words]
 

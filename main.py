@@ -36,7 +36,8 @@ def read_xlsx(file_name):
                                 #     "pos": "",
                                 #     "ner": "",
                                 #     "sentiment": "",
-                                #     "dependency": [] #[(ID, TYPE)]
+                                #     "dependency": [] #[(ID, TYPE)],
+                                #     "vec": [],
                                 #     #...
                                 # } for token in  xl_sheet.cell_value(rownum, 4).split(" ") # TODO smarter tokenization
                             ],
@@ -63,9 +64,7 @@ def main(argv):
         i = importlib.import_module(processor[0])
         news = i.process(news, processor[1])
 
-    print(news[0]['title_tokens'])
-
-    pickle.dump(news, open(file_name.split('.')[0] + "_processed(" + str(processor_classes) + ").pickled", "wb"))
+    pickle.dump(news, open(file_name.split('.')[0] + "_processed(" + str(processor_classes).replace("/", "-") + ").pickled", "wb"))
 
 
 if __name__ == "__main__":
